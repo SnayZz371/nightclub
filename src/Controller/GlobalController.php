@@ -61,4 +61,22 @@ final class GlobalController extends AbstractController
         return new Response('Bonjour ' . $prenom);
 
     }
+
+    #[Route("/json/etape", name: "json_etape")]
+    public function jsonEtape(): Response
+    {
+        $etapes = [
+    [
+            'id' => 1,
+            'annee' => '2026',
+            'texte' => 'Description de l\'étape 1',
+        ],
+        [
+            'id' => 2,
+            'annee' => '2027',
+            'texte' => 'Description de l\'étape 2',
+        ]
+        ];
+        return $this->json($etapes, Response::HTTP_OK);
+    }
 }
