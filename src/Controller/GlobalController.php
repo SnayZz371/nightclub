@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+
 
 final class GlobalController extends AbstractController
 {
@@ -48,5 +50,15 @@ final class GlobalController extends AbstractController
         return $this->render('global/article.html.twig', [
             'slug' => $slug,
         ]);
+    }
+
+    #[Route('/bonjour' , name: 'bonjour')]
+    public function bonjour(Request $request): Response
+    {
+        if (!$prenom = $request->query->get('prenom')) {
+            return new Response('Bonjour invité');
+        }
+        return new Response('Bonjour ' . $prenom);
+
     }
 }
