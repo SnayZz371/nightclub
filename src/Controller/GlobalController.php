@@ -16,12 +16,16 @@ final class GlobalController extends AbstractController
         ]);
     }
 
-    #[Route('/contact' , name: 'contact')]
+    #[Route('/contact', methods: ['GET'], name: 'contact')]
     public function contact(): Response
     {
-        return $this->render('global/contact.html.twig', [
-            'controller_name' => 'GlobalController',
-        ]);
+        return new Response('formulaire de contact');
+    }
+
+    #[Route('/contact', methods: ['POST'], name: 'contact_submit')]
+    public function contactSubmit(): Response
+    {
+        return new Response('formulaire de contact soumis');
     }
 
     #[Route('/about' , name: 'about')]
@@ -46,4 +50,3 @@ final class GlobalController extends AbstractController
         ]);
     }
 }
-
