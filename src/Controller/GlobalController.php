@@ -14,7 +14,7 @@ final class GlobalController extends AbstractController
     public function index(): Response
     {
         return $this->render('global/index.html.twig', [
-            'controller_name' => 'GlobalController',
+            'test' => 'test',
         ]);
     }
 
@@ -33,8 +33,17 @@ final class GlobalController extends AbstractController
     #[Route('/about' , name: 'about')]
     public function about(): Response
     {
+        $historique = [
+            '2020' => 'Création de l\'entreprise',
+            '2021' => 'Lancement du premier produit',
+            '2022' => 'Expansion à l\'international',
+            '2023' => 'Lancement de la version 2.0',
+            '2024' => 'Mise en production',
+            '2025' => 'Atteinte de 1 million d\'utilisateurs',
+            '2026' => 'Sortie sur le marché',
+        ];
         return $this->render('global/about.html.twig', [
-            'controller_name' => 'GlobalController',
+            'historique' => $historique,
         ]);
     }
 

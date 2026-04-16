@@ -8,7 +8,14 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 <div class="example-wrapper">
-    <p>on verra plus tard</p>
-    <a href="{{ path('global') }}">Home</a>
+    <h2>Historique</h2>
+    <ul>
+        {% for année, description in historique %}
+            <li><strong>{{ année }}</strong> : {{ description }}</li>
+        
+            {% else %}
+            <li>Aucun événement historique disponible.</li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
