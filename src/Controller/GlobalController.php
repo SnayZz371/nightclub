@@ -42,6 +42,7 @@ final class GlobalController extends AbstractController
             '2025' => 'Atteinte de 1 million d\'utilisateurs',
             '2026' => 'Sortie sur le marché',
         ];
+        dump($historique);
         return $this->render('global/about.html.twig', [
             'historique' => $historique,
         ]);
