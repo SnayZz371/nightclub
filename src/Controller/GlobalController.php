@@ -32,7 +32,7 @@ final class GlobalController extends AbstractController
         ]);
     }
     #[Route('/article/{id}' , name: 'article')]
-    public function article($id): Response
+    public function article(int $id): Response
     {
         return $this->render('global/article.html.twig', [
             'controller_name' => 'GlobalController',
