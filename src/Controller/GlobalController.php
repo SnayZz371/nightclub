@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class GlobalController extends AbstractController
 {
-    #[Route('/', name: 'app_global')]
+    #[Route('/', name: 'global')]
     public function index(): Response
     {
         return $this->render('global/index.html.twig', [
@@ -16,7 +16,7 @@ final class GlobalController extends AbstractController
         ]);
     }
 
-    #[Route('/contact')]
+    #[Route('/contact' , name: 'contact')]
     public function contact(): Response
     {
         return $this->render('global/contact.html.twig', [
@@ -24,7 +24,7 @@ final class GlobalController extends AbstractController
         ]);
     }
 
-    #[Route('/about')]
+    #[Route('/about' , name: 'about')]
     public function about(): Response
     {
         return $this->render('global/about.html.twig', [
