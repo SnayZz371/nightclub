@@ -9,9 +9,9 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin', name: 'app_admin')]
 final class AdminController extends AbstractController
 {
-    #[Route('/dashboard', name: 'app_admin')]
+    #[Route('/', name: 'app_admin')]
     public function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig' );
+        return $this->render('admin/admin.html.twig' );
     }
 }
