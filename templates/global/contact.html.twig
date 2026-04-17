@@ -11,6 +11,13 @@
 
 <div class="example-wrapper">
     <p>contact page</p>
-    {{ ux_map(map, {style: 'height: 600px;'}) }}
+   {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+   {{ form_widget (form) }}
+   <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+    Envoyer
+   </button>
+   {{ form_end(form) }}
+
+    {{ ux_map(map, {style: 'height: 600px'}) }}
     </div>
 {% endblock %}

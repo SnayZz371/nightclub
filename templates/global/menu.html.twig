@@ -1,8 +1,14 @@
-<div class="bg-gray-800 text-white p-4 menu flex items-center justify-between">
-    <h1 class="text-2xl font-bold mb-4">Menu</h1>
+<div class="bg-gray-800 text-white p-4 menu flex">
+    <h1 class="text-2xl font-bold mb-4">{{ ux_icon("tabler:home") }}</h1>
     <ul>
-        <li><a href="{{ path('global') }}">Home</a></li>
-        <li><a href="{{ path('about') }}">About</a></li>
+        <li>
+            <a href="{{ path('global') }}">home{{ ux_icon("tabler:home") }}</a>
+        </li>
+        <li>
+            <a href="{{ path('about') }}">{{
+                ux_icon("tabler:alert-square-rounded-filled")
+            }}</a>
+        </li>
         <li><a href="{{ path('contact') }}">Contact</a></li>
     </ul>
 </div>

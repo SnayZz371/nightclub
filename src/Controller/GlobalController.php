@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,9 +27,17 @@ final class GlobalController extends AbstractController
         ]);
     }
 
-    #[Route('/contact', methods: ['GET'], name: 'contact')]
-    public function contact(): Response
+    #[Route('/contact', name: 'contact')]
+    public function contact(Request $request): Response
     {
+
+        $form = $this->createForm(ContactType::class);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            dd($data);
+        }
+
         $map = (new Map('default'))
             ->center(new Point(45.7534031, 4.8295061))
             ->zoom(6)
@@ -50,13 +59,8 @@ final class GlobalController extends AbstractController
             );
         return $this->render('global/contact.html.twig', [
             'map' => $map,
+            'form' => $form,
         ]);
-    }
-
-    #[Route('/contact', methods: ['POST'], name: 'contact_submit')]
-    public function contactSubmit(): Response
-    {
-        return new Response('formulaire de contact soumis');
     }
 
     #[Route('/about' , name: 'about')]
