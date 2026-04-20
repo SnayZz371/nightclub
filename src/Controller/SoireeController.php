@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Soiree;
-use App\Form\Soiree1Type;
+use App\Form\SoireeType;
 use App\Repository\SoireeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
