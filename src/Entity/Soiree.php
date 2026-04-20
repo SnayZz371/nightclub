@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SoireeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -33,6 +35,17 @@ class Soiree
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $statut = null;
+
+    /**
+     * @var Collection<int, Artist>
+     */
+    #[ORM\ManyToMany(targetEntity: Artist::class, inversedBy: 'artist_soiree')]
+    private Collection $soiree_artist;
+
+    public function __construct()
+    {
+        $this->soiree_artist = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -83,6 +96,30 @@ class Soiree
     public function setStatut(?string $statut): static
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Artist>
+     */
+    public function getSoireeArtist(): Collection
+    {
+        return $this->soiree_artist;
+    }
+
+    public function addSoireeArtist(Artist $soireeArtist): static
+    {
+        if (!$this->soiree_artist->contains($soireeArtist)) {
+            $this->soiree_artist->add($soireeArtist);
+        }
+
+        return $this;
+    }
+
+    public function removeSoireeArtist(Artist $soireeArtist): static
+    {
+        $this->soiree_artist->removeElement($soireeArtist);
 
         return $this;
     }

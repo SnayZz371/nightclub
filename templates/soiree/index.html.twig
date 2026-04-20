@@ -13,6 +13,7 @@
                 <th>DateSoiree</th>
                 <th>DateCreation</th>
                 <th>Statut</th>
+                <th>Artist</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,8 +26,16 @@
                 <td>{{ soiree.dateCreation ? soiree.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ soiree.statut }}</td>
                 <td>
-                    <a href="{{ path('app_soiree_index', {'id': soiree.id}) }}">accueil</a>
-                    <a href="{{ path('app_soiree_new', {'id': soiree.id}) }}">nouvelle soirée</a>
+                    {% for artist in soiree.soireeArtist %}
+                        <a href="{{ path('app_artist_show', {'id': artist.id}) }}">
+                            {{ artist.nom }} {{ artist.prenom }}
+                        </a>
+                        <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_soiree_show', {'id': soiree.id}) }}">show</a>
+                    <a href="{{ path('app_soiree_edit', {'id': soiree.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
