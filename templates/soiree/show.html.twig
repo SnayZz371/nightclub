@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Soiree{% endblock %}
+
+{% block body %}
+    <h1>Soiree</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ soiree.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ soiree.titre }}</td>
+            </tr>
+            <tr>
+                <th>DateSoiree</th>
+                <td>{{ soiree.dateSoiree ? soiree.dateSoiree|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ soiree.dateCreation ? soiree.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ soiree.statut }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_soiree_index') }}">back to list</a>
+
+    <a href="{{ path('app_soiree_edit', {'id': soiree.id}) }}">edit</a>
+
+    {{ include('soiree/_delete_form.html.twig') }}
+{% endblock %}
