@@ -48,4 +48,13 @@ function soiree(SoireeRepository $soireeRepository, int $id) {
          $em->flush();
          dd($soiree);
    }
+   #[Route('/soiree/{id}/delete', name: 'delete_soiree')]
+   function delete_soiree(EntityManagerInterface $em, int $id)
+   {
+       $repository = $em->getRepository(Soiree::class);
+       $soiree = $repository->find($id);
+       $em->remove($soiree);
+       $em->flush();
+       return $this->redirectToRoute('soirees');
+   }
 }
