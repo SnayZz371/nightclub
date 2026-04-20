@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Soiree;
-use App\Form\SoireeType;
+use App\Form\Soiree1Type;
 use App\Repository\SoireeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,34 +26,9 @@ final class SoireeController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $soiree = new Soiree();
-        $form = $this->createForm(SoireeType::class, $soiree);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($soiree);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_soiree_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('soiree/new.html.twig', [
-            'soiree' => $soiree,
-            'form' => $form,
+        $form = $this->createForm(SoireeType::class, $soiree,[
+            'attr' => ['novalidate' => 'novalidate']
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_soiree_show', methods: ['GET'])]
-    public function show(Soiree $soiree): Response
-    {
-        return $this->render('soiree/show.html.twig', [
-            'soiree' => $soiree,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_soiree_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Soiree $soiree, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(SoireeType::class, $soiree);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
