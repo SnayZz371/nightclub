@@ -25,8 +25,8 @@
                 <td>{{ soiree.dateCreation ? soiree.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ soiree.statut }}</td>
                 <td>
-                    <a href="{{ path('app_soiree_show', {'id': soiree.id}) }}">show</a>
-                    <a href="{{ path('app_soiree_edit', {'id': soiree.id}) }}">edit</a>
+                    <a href="{{ path('app_soiree_index', {'id': soiree.id}) }}">accueil</a>
+                    <a href="{{ path('app_soiree_new', {'id': soiree.id}) }}">nouvelle soirée</a>
                 </td>
             </tr>
         {% else %}
