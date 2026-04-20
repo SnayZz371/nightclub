@@ -24,7 +24,9 @@ final class SoireeController extends AbstractController
     function creer_soiree(EntityManagerInterface $em, Request $request): Response
     {
         $soiree = new Soiree();
-        $form = $this->createForm(SoireeType::class, $soiree);
+        $form = $this->createForm(SoireeType::class, $soiree,[
+            'attr' => ['novalidate' => 'novalidate']
+        ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($soiree);
