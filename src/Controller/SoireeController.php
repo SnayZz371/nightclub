@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Soiree;
+use App\Form\SoireeType;
 use App\Repository\SoireeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -19,17 +21,21 @@ final class SoireeController extends AbstractController
         ]);
     }
     #[Route('/soiree/creer', name: 'creer_soiree')]
-    public function creer_soiree(EntityManagerInterface $em): Response
+    function creer_soiree(EntityManagerInterface $em, Request $request): Response
     {
         $soiree = new Soiree();
-        $soiree->setTitre ("Soirée mousse");
-       $soiree->setDateSoiree(new \DateTimeimmutable);
-         $soiree->setDateCreation(new \DateTimeImmutable);
-
-       $em->persist($soiree);
-       $em->flush();
-       return new Response("Soirée créé avec succée !");
+        $form = $this->createForm(SoireeType::class, $soiree);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($soiree);
+            $em->flush();
+            return $this->redirectToRoute('soirees');
+        }
+        return $this->render('soiree/creer.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
+
     #[Route('/soirees', name: 'soirees')]
 function soirees(SoireeRepository $soireeRepository) {
        $soirees = $soireeRepository->findAll();
