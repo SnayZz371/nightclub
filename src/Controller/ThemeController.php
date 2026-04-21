@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/theme')]
+#[Route('/admin/theme')]
 final class ThemeController extends AbstractController
 {
     #[Route(name: 'app_theme_index', methods: ['GET'])]

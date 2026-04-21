@@ -14,16 +14,18 @@ use Symfony\UX\Map\InfoWindow;
 use Symfony\UX\Map\Map;
 use Symfony\UX\Map\Marker;
 use Symfony\UX\Map\Point;
-
+use App\Repository\SoireeRepository;
 
 final class GlobalController extends AbstractController
 {
 
     #[Route('/', name: 'accueil')]
-    public function index(): Response
+    public function index(SoireeRepository $soireeRepository): Response
     {
+        $lastThree = $soireeRepository->findLastThree();
         return $this->render('global/index.html.twig', [
             'title' => 'Nightclub',
+            'liste_soirees' => $lastThree,
         ]);
     }
 

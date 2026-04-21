@@ -4,23 +4,20 @@ namespace App\Controller;
 
 use App\Entity\Soiree;
 use App\Form\Soiree1Type;
-use App\Repository\SoireeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/soiree')]
+#[Route('/admin/soiree')]
 final class SoireeController extends AbstractController
 {
     #[Route(name: 'app_soiree_index', methods: ['GET'])]
     public function index(SoireeRepository $soireeRepository): Response
     {
-        $lastThree = $soireeRepository->findLastThree();
         return $this->render('soiree/index.html.twig', [
             'soirees' => $soireeRepository->findAll(),
-            'liste_soirees' => $lastThree,
         ]);
     }
 
