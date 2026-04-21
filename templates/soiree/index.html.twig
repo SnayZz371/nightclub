@@ -46,7 +46,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ soiree.themeSoiree ? soiree.themeSoiree.nom : '' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{ path('app_soiree_show', {'id': soiree.id}) }}" class="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 mr-2 transition-colors duration-200">Voir</a>
-                            <a href="{{ path('app_soiree_edit', {'id': soiree.id}) }}" class="text-yellow-600 hover:text-yellow-800 dark:text-yellow-400 dark:hover:text-yellow-300 transition-colors duration-200">Éditer</a>
+                            <a href="{{ path('app_soiree_edit', {'id': soiree.id}) }}" class="text-yellow-600 hover:text-yellow-800 dark:text-yellow-400 dark:hover:text-yellow-300 transition-colors duration-200">Éditer</a> 
                         </td>
                     </tr>
                 {% else %}
@@ -62,6 +62,20 @@
             <a href="{{ path('app_soiree_new') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 transition-colors duration-200">
                 Créer une nouvelle soirée
             </a>
+        </div>
+        <div>
+            <h2>liste des prochaines soirées</h2>
+            <ul>    
+                {% for soiree in liste_soirees %}
+                    <li>
+                        <a href="{{ path('app_soiree_show', {'id': soiree.id}) }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200">
+                            {{ soiree.titre }} - {{ soiree.dateSoiree ? soiree.dateSoiree|date('d/m/Y H:i') : '' }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="text-gray-500 dark:text-gray-400">Aucune soirée à venir trouvée</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

@@ -40,4 +40,14 @@ class SoireeRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function findLastThree()
+{
+    return $this->createQueryBuilder('s') 
+        ->setParameter('now', new \DateTimeImmutable())
+        ->where('s.dateSoiree >= :now')
+        ->orderBy('s.dateSoiree', 'ASC')
+        ->setMaxResults(3)
+        ->getQuery()
+        ->getResult();
+}
 }
