@@ -15,6 +15,7 @@
                         <th class="px-6 py-3">Date de la Soirée</th>
                         <th class="px-6 py-3">Date de Création</th>
                         <th class="px-6 py-3">Artistes</th>
+                        <th class="px-6 py-3">Matériels</th>
                         <th class="px-6 py-3">Thème</th>
                         <th class="px-6 py-3">Actions</th>
                     </tr>
@@ -30,6 +31,14 @@
                             {% for artist in soiree.soireeArtist %}
                                 <a href="{{ path('app_artist_show', {'id': artist.id}) }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200">
                                     {{ artist.nom }} {{ artist.prenom }}
+                                </a>
+                                {% if not loop.last %}<br>{% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for materielSoiree in soiree.materielSoirees %}
+                                <a href="{{ path('app_materiel_soiree_show', {'id': materielSoiree.id}) }}" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors duration-200">
+                                    {{ materielSoiree.materiel.nom }}
                                 </a>
                                 {% if not loop.last %}<br>{% endif %}
                             {% endfor %}

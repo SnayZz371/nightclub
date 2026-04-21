@@ -19,11 +19,11 @@ class MaterielSoireeType extends AbstractType
             ->add('dateReservationFin')
             ->add('materiel', EntityType::class, [
                 'class' => Materiel::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
             ->add('soiree', EntityType::class, [
                 'class' => Soiree::class,
-                'choice_label' => 'id',
+                'choice_label' => 'titre',
             ])
         ;
     }
