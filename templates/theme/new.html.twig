@@ -3,9 +3,15 @@
 {% block title %}New Theme{% endblock %}
 
 {% block body %}
-    <h1>Create new Theme</h1>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Créer un nouveau thème</h1>
 
-    {{ include('theme/_form.html.twig') }}
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+            {{ include('theme/_form.html.twig') }}
+        </div>
 
-    <a href="{{ path('app_theme_index') }}">back to list</a>
+        <div class="mt-6">
+            <a href="{{ path('app_theme_index') }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200">Retour à la liste</a>
+        </div>
+    </div>
 {% endblock %}

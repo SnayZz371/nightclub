@@ -3,36 +3,41 @@
 {% block title %}Artist{% endblock %}
 
 {% block body %}
-    <h1>Artist</h1>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Artiste</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ artist.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ artist.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ artist.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ artist.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ artist.email }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <table class="min-w-full table-auto text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                    <tr>
+                        <th class="px-6 py-4 font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700">ID</th>
+                        <td class="px-6 py-4">{{ artist.id }}</td>
+                    </tr>
+                    <tr>
+                        <th class="px-6 py-4 font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700">Nom</th>
+                        <td class="px-6 py-4">{{ artist.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th class="px-6 py-4 font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700">Prénom</th>
+                        <td class="px-6 py-4">{{ artist.prenom }}</td>
+                    </tr>
+                    <tr>
+                        <th class="px-6 py-4 font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700">Téléphone</th>
+                        <td class="px-6 py-4">{{ artist.telephone }}</td>
+                    </tr>
+                    <tr>
+                        <th class="px-6 py-4 font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700">Email</th>
+                        <td class="px-6 py-4">{{ artist.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <a href="{{ path('app_artist_index') }}">back to list</a>
+        <div class="mt-6 flex gap-4">
+            <a href="{{ path('app_artist_index') }}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200">Retour à la liste</a>
+            <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200">Éditer</a>
+        </div>
 
-    <a href="{{ path('app_artist_edit', {'id': artist.id}) }}">edit</a>
-
-    {{ include('artist/_delete_form.html.twig') }}
+        {{ include('artist/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

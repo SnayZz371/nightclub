@@ -3,21 +3,14 @@
 {% block title %}Hello GlobalController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<div class="example-wrapper">
-    <h2>Historique</h2>
-    <ul>
-        {% for année, description in historique %}
-            <li><strong>{{ année }}</strong> : {{ description }}</li>
-        
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Historique</h2>
+        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+            {% for année, description in historique %}
+                <li class="mb-2"><strong class="text-gray-900 dark:text-white">{{ année }}</strong> : {{ description }}</li>
             {% else %}
-            <li>Aucun événement historique disponible.</li>
-        {% endfor %}
-    </ul>
-    {{ dump(historique) }}
-    {{ dump() }}
-</div>
+                <li class="text-gray-500 dark:text-gray-400">Aucun événement historique disponible.</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

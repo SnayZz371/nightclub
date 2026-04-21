@@ -3,35 +3,41 @@
 {% block title %}MaterielSoiree index{% endblock %}
 
 {% block body %}
-    <h1>MaterielSoiree index</h1>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Liste des Matériels de Soirée</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>DateReservationDebut</th>
-                <th>DateReservationFin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for materiel_soiree in materiel_soirees %}
-            <tr>
-                <td>{{ materiel_soiree.id }}</td>
-                <td>{{ materiel_soiree.dateReservationDebut ? materiel_soiree.dateReservationDebut|date('Y-m-d') : '' }}</td>
-                <td>{{ materiel_soiree.dateReservationFin ? materiel_soiree.dateReservationFin|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_materiel_soiree_show', {'id': materiel_soiree.id}) }}">show</a>
-                    <a href="{{ path('app_materiel_soiree_edit', {'id': materiel_soiree.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="min-w-full table-auto text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th class="px-6 py-3">ID</th>
+                        <th class="px-6 py-3">Date Réservation Début</th>
+                        <th class="px-6 py-3">Date Réservation Fin</th>
+                        <th class="px-6 py-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                {% for materiel_soiree in materiel_soirees %}
+                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200">
+                        <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900 dark:text-white">{{ materiel_soiree.id }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ materiel_soiree.dateReservationDebut ? materiel_soiree.dateReservationDebut|date('d/m/Y') : '' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ materiel_soiree.dateReservationFin ? materiel_soiree.dateReservationFin|date('d/m/Y') : '' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a href="{{ path('app_materiel_soiree_show', {'id': materiel_soiree.id}) }}" class="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 mr-2 transition-colors duration-200">Voir</a>
+                            <a href="{{ path('app_materiel_soiree_edit', {'id': materiel_soiree.id}) }}" class="text-yellow-600 hover:text-yellow-800 dark:text-yellow-400 dark:hover:text-yellow-300 transition-colors duration-200">Éditer</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">Aucun matériel de soirée trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    <a href="{{ path('app_materiel_soiree_new') }}">Create new</a>
+        <div class="mt-6">
+            <a href="{{ path('app_materiel_soiree_new') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors duration-200">Créer un nouveau matériel de soirée</a>
+        </div>
+    </div>
 {% endblock %}
