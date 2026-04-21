@@ -42,6 +42,12 @@ class Soiree
     #[ORM\ManyToMany(targetEntity: Artist::class, inversedBy: 'artist_soiree')]
     private Collection $soiree_artist;
 
+    // #[ORM\Column(length: 255)]
+    // private ?string $theme_soiree = null;
+
+    #[ORM\ManyToOne(inversedBy: 'soireeTheme')]
+    private ?Theme $themeSoiree = null;
+
     public function __construct()
     {
         $this->soiree_artist = new ArrayCollection();
@@ -120,6 +126,18 @@ class Soiree
     public function removeSoireeArtist(Artist $soireeArtist): static
     {
         $this->soiree_artist->removeElement($soireeArtist);
+
+        return $this;
+    }
+
+    public function getThemeSoiree(): ?Theme
+    {
+        return $this->themeSoiree;
+    }
+
+    public function setThemeSoiree(?Theme $themeSoiree): static
+    {
+        $this->themeSoiree = $themeSoiree;
 
         return $this;
     }
