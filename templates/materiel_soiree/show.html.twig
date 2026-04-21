@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MaterielSoiree{% endblock %}
+
+{% block body %}
+    <h1>MaterielSoiree</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ materiel_soiree.id }}</td>
+            </tr>
+            <tr>
+                <th>DateReservationDebut</th>
+                <td>{{ materiel_soiree.dateReservationDebut ? materiel_soiree.dateReservationDebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateReservationFin</th>
+                <td>{{ materiel_soiree.dateReservationFin ? materiel_soiree.dateReservationFin|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_materiel_soiree_index') }}">back to list</a>
+
+    <a href="{{ path('app_materiel_soiree_edit', {'id': materiel_soiree.id}) }}">edit</a>
+
+    {{ include('materiel_soiree/_delete_form.html.twig') }}
+{% endblock %}

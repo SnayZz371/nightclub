@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MaterielSoiree{% endblock %}
+
+{% block body %}
+    <h1>Create new MaterielSoiree</h1>
+
+    {{ include('materiel_soiree/_form.html.twig') }}
+
+    <a href="{{ path('app_materiel_soiree_index') }}">back to list</a>
+{% endblock %}
